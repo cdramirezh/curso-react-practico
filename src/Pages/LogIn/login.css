@@ -1,0 +1,6 @@
+.error {
+	outline: 3px solid #ff00003d;
+}
+input.error::placeholder {
+	color: red
+}
