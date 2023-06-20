@@ -77,9 +77,9 @@ const Navbar = () => {
         </li>
       </ul>
       <ul className='flex items-center gap-3'>
-        <li className='text-black/60'>
-          teff@platzi.com
-        </li>
+        {!!context.isUserLoggedIn && <li className='text-black/60'>
+					{context.account.email}
+        </li>}
         <li>
           <NavLink
             to='/my-orders'
@@ -100,11 +100,14 @@ const Navbar = () => {
         </li>
         <li>
           <NavLink
-            to='/sing-in'
+						to={`${context.isUserLoggedIn ? '/' : '/sign-up'}`}
             className={({ isActive }) =>
               isActive ? activeStyle : undefined
-            }>
-            Sign In
+            }
+						onClick={context.logout}
+					>
+            {!!context.isUserLoggedIn && 'Log out'}
+            {!context.isUserLoggedIn && 'Sign Up'}
           </NavLink>
         </li>
         <li className='flex items-center'>
