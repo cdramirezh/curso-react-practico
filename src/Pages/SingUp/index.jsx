@@ -1,8 +1,10 @@
 import { useContext, useState } from "react";
 import Layout from "../../Components/Layout";
 import { ShoppingCartContext } from "../../Context";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+	const navigate = useNavigate()
 	const context = useContext(ShoppingCartContext);
 	const [userInputError, setUserInputError] =  useState(false)
 	const [emailError, setEmailError] = useState(false)
@@ -28,6 +30,7 @@ const SignUp = () => {
 		if (!emptyUser && !emptyPw && !emptyEmail) {
 			try {
 				context.signUp(username, email, password)
+				navigate('/')
 			} catch (e) {
 				console.log('got it')
 				setIsUsernameTaken(true)
@@ -85,6 +88,7 @@ const SignUp = () => {
 					Checkout
 				</button>
 			</form>
+			<Link className="mt-5 text-blue-500" to='/log-in'>Already have an account? log in!</Link>
 		</Layout>
 	);
 };
