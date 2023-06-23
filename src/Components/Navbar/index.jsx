@@ -77,9 +77,10 @@ const Navbar = () => {
         </li>
       </ul>
       <ul className='flex items-center gap-3'>
-        {!!context.isUserLoggedIn && <li className='text-black/60'>
+        {!!context.isUserLoggedIn && <>
+				<li className='text-black/60'>
 					{context.account.email}
-        </li>}
+        </li>
         <li>
           <NavLink
             to='/my-orders'
@@ -98,6 +99,7 @@ const Navbar = () => {
             My Account
           </NavLink>
         </li>
+				</>}
         <li>
           <NavLink
 						to={`${context.isUserLoggedIn ? '/' : '/sign-up'}`}
@@ -110,10 +112,12 @@ const Navbar = () => {
             {!context.isUserLoggedIn && 'Sign Up'}
           </NavLink>
         </li>
+				{!!context.isUserLoggedIn && <>
         <li className='flex items-center'>
           <ShoppingBagIcon className='h-6 w-6 text-black'></ShoppingBagIcon>
           <div>{context.cartProducts.length}</div>
         </li>
+				</>}
       </ul>
     </nav>
   )
