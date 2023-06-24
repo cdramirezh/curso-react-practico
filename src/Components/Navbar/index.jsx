@@ -1,15 +1,28 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { ShoppingBagIcon } from "@heroicons/react/24/solid";
+import { ShoppingBagIcon, Bars3Icon } from "@heroicons/react/24/solid";
 import { ShoppingCartContext } from "../../Context";
+import "./navbar.css";
 
 const Navbar = () => {
 	const context = useContext(ShoppingCartContext);
+	const [isNavOpen, setIsNavOpen] = useState(false);
 	const activeStyle = "underline underline-offset-4";
 
 	return (
-		<nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light bg-white">
-			<ul className="flex items-center gap-3">
+		<nav className="custom-navbar flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light bg-[#fffc]">
+			<Bars3Icon
+				className="h-10 w-10 md:hidden"
+				onClick={() => {
+					setIsNavOpen(!isNavOpen);
+				}}
+			/>
+			<ul
+				className={
+					"flex items-center gap-3" +
+					(isNavOpen ? "" : " [@media(max-width:767px)]:hidden")
+				}
+			>
 				<li className="font-semibold text-lg">
 					<NavLink to="/">Shopi</NavLink>
 				</li>
@@ -68,7 +81,12 @@ const Navbar = () => {
 					</NavLink>
 				</li>
 			</ul>
-			<ul className="flex items-center gap-3">
+			<ul
+				className={
+					"flex items-center gap-3" +
+					(isNavOpen ? "" : " [@media(max-width:767px)]:hidden")
+				}
+			>
 				{!!context.isUserLoggedIn && (
 					<>
 						<li className="text-black/60">

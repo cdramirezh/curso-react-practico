@@ -1,0 +1,19 @@
+@media (max-width: 767px) {
+	nav.custom-navbar {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+	}
+
+	nav.custom-navbar ul {
+		/* display: flex; */
+		flex-direction: column;
+		align-items: flex-end;
+		margin: 0;
+		padding: 0;
+	}
+
+	nav.custom-navbar ul.hidden {
+		display: none;
+	}
+}
